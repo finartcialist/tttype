@@ -1,0 +1,98 @@
+body {
+    background-color: rgb(204, 251, 204);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 100px 100px;
+    grid-gap: 10x;
+}
+
+.portefeuille {
+    grid-column: 1;
+    grid-row: 1/4;
+    background-color: rgb(250, 238, 240);
+    border: black;
+    border-radius: 10px;
+    border-style: dotted;
+    padding: 5px;
+}
+
+.market {
+    grid-column: 5;
+    grid-row: 1/4;
+    background-color: rgb(255, 220, 226);
+    border: black;
+    border-radius: 10px;
+    border-style: dotted;
+    padding: 5px;
+}
+
+.portfolio {
+    grid-column: 1;
+    grid-row: 1/4;
+    background-color: rgb(255, 220, 226);
+    border: black;
+    border-radius: 10px;
+    border-style: dotted;
+    padding: 5px;
+}
+
+.div-ide {
+    grid-column: 2/5;
+    grid-row: 1/4;
+    background-color: rgb(255, 220, 226);
+    border: black;
+    border-radius: 10px;
+    border-style: dotted;
+    padding: 5px;
+    margin: 0 5px 5px 5px;
+}
+
+.div-terminal {
+    grid-column: 2/5;
+    grid-row: 4;
+    background-color: rgb(255, 220, 226);
+    border: black;
+    border-radius: 10px;
+    border-style: dotted;
+    padding: 5px;
+    margin: 5px 5px 0 5px;
+}
+
+#terminal {
+    background-color: rgb(211, 211, 211);
+}
+
+#title {
+    font-size: 46px;
+}
+
+#explain {
+    padding-top: 5px;
+}
+
+.b_r_arrow,
+.s_r_arrow {
+    background-color: white;
+    font-weight: 600;
+}
+
+.portefeuille {
+    margin: 0px auto;
+}
+
+.td-table {
+    text-align: center;
+    padding: 5px;
+}
+
+#monnaie {
+    font-weight: 600;
+}
+
+.highlight {
+    font-weight: 600;
+}

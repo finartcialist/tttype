@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>try TTType, the esolang plugin</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body onload="updatePortefeuille();updatePossessionValues();">
+    <h1 id="title">TTType</h1>
+    <p>TTType is meant to be an esolang plugin, meaning it is something that works with any programming language when properly implemented.
+    </p>
+    <p>TTType simulates a market for every symbol or reserved words used in a programming language.</p>
+    <p>Here, TTType is used as a plugin on top of
+        <a href="https://en.wikipedia.org/wiki/Brainfuck">brainf***</a>.</p>
+    <h2>try TTType here: </h2>
+    <div class="wrapper">
+        <div class="div-ide">
+            <p class="highlight">Code window </p>
+            <textarea id="ide" oninput="updateTTType();" rows="25" cols="75">>++++++++[<+++++++++>-]<.>++++[<+++++++>-]<+.+++++++..+++.>>++++++[<+++++++>-]<+
+                +.------------.>++++++[<+++++++++>-]<+.<.+++.------.--------.>>>++++[<++++++++>-
+                ]<+.</textarea>
+            <button onclick="decideExecution();">interpret this!</button>
+
+        </div>
+        <div class="div-terminal">
+            <p class="highlight">Terminal</p>
+            <textarea id="terminal" readonly rows=10 cols=75></textarea>
+        </div>
+        <div class="portfolio">
+            <p class="highlight">Portfolio</p>
+            <table class="portefeuille">
+                <tr>
+                    <td class="td-table"></td>
+                    <td class="td-table">Have</td>
+                    <td class="td-table">Use</td>
+
+                </tr>
+                <tr>
+                    <td class="td-table">&lt</td>
+                    <td class="td-table" id="possession_right_arrow"></td>
+                    <td class="td-table" id="p_right_arrow"> 1</td>
+                </tr>
+                <tr>
+                    <td class="td-table">&gt</td>
+                    <td class="td-table" id="poss_left_arrow"></td>
+                    <td class="td-table" id="p_left_arrow">1</td>
+                </tr>
+                <tr>
+                    <td class="td-table">+ </td>
+                    <td class="td-table" id="poss_plus"></td>
+                    <td class="td-table" id="p_+">1</td>
+                </tr>
+
+                <tr>
+                    <td class="td-table">- </td>
+                    <td class="td-table" id="poss_moins"></td>
+                    <td class="td-table" id="p_-">1</td>
+                </tr>
+
+                <tr>
+                    <td class="td-table">. </td>
+                    <td class="td-table" id="poss_point"></td>
+
+                    <td class="td-table" id="p_.">1</td>
+                </tr>
+
+                <tr>
+                    <td class="td-table">, </td>
+                    <td class="td-table" id="poss_comma"></td>
+
+                    <td class="td-table" id="p_,">1</td>
+                </tr>
+
+                <tr>
+                    <td class="td-table">[ </td>
+                    <td class="td-table" id="poss_lbracket"></td>
+
+                    <td class="td-table" id="p_[">1</td>
+                </tr>
+
+                <tr>
+                    <td class="td-table">] </td>
+                    <td class="td-table" id="poss_rbracket"></td>
+
+                    <td class="td-table" id="p_]">1</td>
+                </tr>
+                <tr>
+                    <td class="td-table">Money :</td>
+                    <td class="td-table" id="monnaie">1000</td>
+                </tr>
+            </table>
+        </div>
+        <div class="market">
+            <p class="highlight">Market</p>
+            <table class="portefeuille">
+                <tr>
+                    <td class="td-table"></td>
+                    <td class="td-table">Value</td>
+                    <td class="td-table">Buy</td>
+                    <td class="td-table">Sell</td>
+
+                </tr>
+                <tr>
+                    <td class="td-table">&lt</td>
+                    <td class="td-table" id="m_right_arrow">10</td>
+                    <td class="td-table"><button class="b_r_arrow" onclick="buy_arrow_r();">+</button></td>
+                    <td class="td-table"><button class="s_r_arrow" onclick="sell_arrow_r();">-</button></td>
+
+                </tr>
+                <tr>
+                    <td class="td-table">&gt</td>
+                    <td class="td-table" id="m_left_arrow">10</td>
+                    <td class="td-table"><button class="b_r_arrow" onclick="buy_arrow_l();">+</button></td>
+                    <td class="td-table"><button class="s_r_arrow" onclick="sell_arrow_l();">-</button></td>
+
+                </tr>
+                <tr>
+                    <td class="td-table">+ </td>
+
+                    <td class="td-table" id="m_+">10</td>
+                    <td class="td-table"><button class="b_r_arrow" onclick="buy_plus();">+</button></td>
+                    <td class="td-table"><button class="s_r_arrow" onclick="sell_plus();">-</button></td>
+
+                </tr>
+
+                <tr>
+                    <td class="td-table">-</td>
+
+                    <td class="td-table" id="m_-">10</td>
+                    <td class="td-table"><button class="b_r_arrow" onclick="buy_moins();">+</button></td>
+                    <td class="td-table"><button class="s_r_arrow" onclick="sell_moins();">-</button></td>
+
+                </tr>
+
+                <tr>
+                    <td class="td-table">. </td>
+
+                    <td class="td-table" id="m_.">10</td>
+                    <td class="td-table"><button class="b_r_arrow" onclick="buy_point();">+</button></td>
+                    <td class="td-table"><button class="s_r_arrow" onclick="sell_point();">-</button></td>
+
+                </tr>
+
+                <tr>
+                    <td class="td-table">, </td>
+
+                    <td class="td-table" id="m_,">10</td>
+                    <td class="td-table"><button class="b_r_arrow" onclick="buy_comma();">+</button></td>
+                    <td class="td-table"><button class="s_r_arrow" onclick="sell_comma();">-</button></td>
+
+                </tr>
+
+                <tr>
+                    <td class="td-table">[ </td>
+
+                    <td class="td-table" id="m_[">10</td>
+                    <td class="td-table"><button class="b_r_arrow" onclick="buy_lbracket();">+</button></td>
+                    <td class="td-table"><button class="s_r_arrow" onclick="sell_lbracket();">-</button></td>
+
+                </tr>
+
+                <tr>
+                    <td class="td-table">] </td>
+
+                    <td class="td-table" id="m_]">10 </td>
+                    <td class="td-table"><button class="b_r_arrow" onclick="buy_rbracket();">+</button></td>
+                    <td class="td-table"><button class="s_r_arrow" onclick="sell_rbracket();">-</button></td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="explain">
+        <h2>How it works</h2>
+        <p>There are four sections: the portfolio, the code window, the terminal and the market.</p>
+        <ul>
+            <li>In your
+                <a class="highlight">portfolio</a>, you can see how many of each symbol you currently have at your disposal - and how many symbols would be used by the program currently in the code window. You can also see how much Money you have.</li>
+            <li>In the
+                <a class="highlight">code window</a>, you can enter code to be executed by pressing the "interpret this!" button.</li>
+            <li>The <a class="highlight">Terminal</a> will display results from interpreting the code - it will also display errors and warnings.</li>
+            <li>The
+                <a class="highlight">market</a> displays the current value of each symbol. You can press the +/- buttons next to each symbol to buy/sell the symbol to the left of the button.</li>
+        </ul>
+
+        <p>Prices will change as you type, so keep an eye on the market !</p>
+    </div>
+
+</body>
+
+<script src="thecode.js "></script>
+
+</html>
